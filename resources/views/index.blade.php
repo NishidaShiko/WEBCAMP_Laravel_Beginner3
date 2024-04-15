@@ -1,11 +1,18 @@
-@extends('test.layout')
+@extends('layout')
 
-{{-- メインコンテンツ --}}
 @section('contets')
-        <form action="/test/input" method="post">
+        <h1>ログイン</h1>
+        @if ($errors->any())
+            <div>
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br>
+            @endforeach
+            </div>
+        @endif
+        <form action="/login" method="post">
             @csrf
-            email：<input name="email"><br>
+            email：<input name="email" value="{{ old('email') }}"><br>
             パスワード：<input  name="password" type="password"><br>
-            <button>送信する</button>
+            <button>ログインする</button>
         </form>
 @endsection
